@@ -1,0 +1,19 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Start Django Project",
+			"command": "C:/Users/No-one/Documents/vscode-projects/PROJECT-ONE-11/.venv/Scripts/python.exe",
+			"args": [
+				"-m",
+				"django",
+				"startproject",
+				"project_one_11",
+				"."
+			],
+			"group": "build",
+			"problemMatcher": []
+		}
+	]
+}
