@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Account Page</h2>
+  {% if messages %}
+    {% for message in messages %}
+      <div id="successModal" class="modal" style="display:block;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:1000;">
+        <div style="background:#fff;padding:2em;margin:10vh auto;width:300px;text-align:center;border-radius:8px;">
+          <h3>{{ message }}</h3>
+          <button onclick="document.getElementById('successModal').style.display='none'">Close</button>
+        </div>
+      </div>
+    {% endfor %}
+  {% endif %}
+  <p>Welcome, {{ user.username }}!</p>
+  <p>Email: {{ user.email }}</p>
+  <p>Buyer: {{ user.is_buyer }}</p>
+  <p>Seller: {{ user.is_seller }}</p>
+  <p>Business: {{ user.is_business }}</p>
+{% endblock %}
