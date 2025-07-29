@@ -24,8 +24,12 @@ from marketplace.models import Item
 from marketplace.models import Item
 
 def home(request):
-    items = Item.objects.all().order_by('-created_at')
-    return render(request, 'home.html', {'items': items})
+    query = request.GET.get('q', '')
+    items = Item.objects.all()
+    if query:
+        items = items.filter(title__icontains=query) | items.filter(description__icontains=query)
+    items = items.order_by('-created_at')
+    return render(request, 'home.html', {'items': items, 'query': query})
 def item_detail(request, item_id):
     from marketplace.models import Item
     item = get_object_or_404(Item, id=item_id)

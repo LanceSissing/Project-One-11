@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>{{ item.title }}</h2>
+  <p>{{ item.description }}</p>
+  <p>Price: ${{ item.price }}</p>
+  <p>Posted by: {{ item.owner.email }}</p>
+  {% if item.images.all %}
+    <div class="row mb-3">
+      {% for image in item.images.all %}
+        <div class="col-4 col-md-2 mb-2">
+          <img src="{{ image.image.url }}" class="img-thumbnail gallery-thumb" data-bs-toggle="modal" data-bs-target="#galleryModal" data-img-url="{{ image.image.url }}" alt="Item image" style="cursor:pointer; max-width:100px; max-height:100px;" />
+        </div>
+      {% endfor %}
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="galleryModalLabel">Image Preview</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-center">
+            <img id="modalImage" src="" alt="Full size image" style="max-width:100%; max-height:70vh;" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var galleryThumbs = document.querySelectorAll('.gallery-thumb');
+        var modalImage = document.getElementById('modalImage');
+        galleryThumbs.forEach(function(thumb) {
+          thumb.addEventListener('click', function() {
+            var imgUrl = this.getAttribute('data-img-url');
+            modalImage.setAttribute('src', imgUrl);
+          });
+        });
+      });
+    </script>
+  {% endif %}
+  <a href="/">Back to listings</a>
+{% endblock %}
