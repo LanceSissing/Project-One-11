@@ -11,9 +11,56 @@
       </div>
     {% endfor %}
   {% endif %}
-  <p>Welcome, {{ user.username }}!</p>
-  <p>Email: {{ user.email }}</p>
-  <p>Buyer: {{ user.is_buyer }}</p>
-  <p>Seller: {{ user.is_seller }}</p>
-  <p>Business: {{ user.is_business }}</p>
+
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">User Details</div>
+    <div class="card-body">
+      <p><strong>Username:</strong> {{ user.username }}</p>
+      <p><strong>Email:</strong> {{ user.email|default:'(not set)' }}</p>
+      <p><strong>Buyer:</strong> {{ user.is_buyer }}</p>
+      <p><strong>Seller:</strong> {{ user.is_seller }}</p>
+      <p><strong>Business:</strong> {{ user.is_business }}</p>
+    </div>
+  </div>
+
+  <div class="card mb-4">
+    <div class="card-header bg-success text-white">Add New Item</div>
+    <div class="card-body">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ item_form.as_p }}
+        <label for="id_images">Images (up to 6):</label>
+        <input type="file" name="images" id="id_images" multiple accept="image/*">
+        <button type="submit" class="btn btn-success">Add Item</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header bg-info text-white">Your Listed Items</div>
+    <div class="card-body">
+      {% if items %}
+        <ul class="list-group">
+          {% for item in items %}
+            <li class="list-group-item">
+              <strong>{{ item.title }}</strong> ({{ item.category }})<br>
+              {{ item.description }}<br>
+              <span class="text-muted">Price: ${{ item.price }}</span><br>
+              <small>Posted: {{ item.created_at|date:"Y-m-d H:i" }}</small>
+              {% if item.images.all %}
+                <div class="mt-2">
+                  {% for image in item.images.all %}
+                    <img src="{{ image.image.url }}" alt="Item image" style="max-width:120px;max-height:120px;margin:2px;border-radius:4px;">
+                  {% endfor %}
+                </div>
+              {% endif %}
+              <a href="{% url 'edit_item' item.id %}" class="btn btn-sm btn-warning mt-2">Edit</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p>You have not listed any items yet.</p>
+      {% endif %}
+    </div>
+  </div>
 {% endblock %}
