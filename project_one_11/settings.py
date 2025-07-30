@@ -142,11 +142,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 import dj_database_url
 import django_heroku
 
-DEBUG = False
-ALLOWED_HOSTS = ['*']
-
-DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-# Ensure ENGINE is set for Heroku Postgres
-if not DATABASES['default'].get('ENGINE'):
-    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
-django_heroku.settings(locals())
+if 'DATABASE_URL' in os.environ:
+    DEBUG = False
+    ALLOWED_HOSTS = ['*']
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    # Ensure ENGINE is set for Heroku Postgres
+    if not DATABASES['default'].get('ENGINE'):
+        DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
+    django_heroku.settings(locals())
