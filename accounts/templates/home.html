@@ -2,9 +2,57 @@
 {% block content %}
   <h2>Marketplace Listings</h2>
   <form method="get" action="" class="mb-4">
-    <div class="input-group">
-      <input type="text" name="q" class="form-control" placeholder="Search items..." value="{{ query }}">
-      <button class="btn btn-outline-secondary" type="submit">Search</button>
+    <div class="row g-2">
+      <div class="col-md-3">
+        <select name="make" class="form-select">
+          <option value="">Any Make</option>
+          {% for m in makes %}
+            <option value="{{ m }}" {% if m == make %}selected{% endif %}>{{ m }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select name="model" class="form-select" id="model-select">
+          <option value="">Any Model</option>
+          {% for mod in models %}
+            <option value="{{ mod }}" {% if mod == model %}selected{% endif %}>{{ mod }}</option>
+          {% endfor %}
+        </select>
+      </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var makeSelect = document.querySelector('select[name="make"]');
+      var modelSelect = document.getElementById('model-select');
+      makeSelect.addEventListener('change', function() {
+        var make = this.value;
+        fetch('/accounts/ajax/get-models/?make=' + encodeURIComponent(make))
+          .then(response => response.json())
+          .then(data => {
+            modelSelect.innerHTML = '<option value="">Any Model</option>';
+            data.models.forEach(function(mod) {
+              var option = document.createElement('option');
+              option.value = mod;
+              option.textContent = mod;
+              modelSelect.appendChild(option);
+            });
+          });
+      });
+    });
+  </script>
+      <div class="col-md-2">
+        <select name="year" class="form-select">
+          <option value="">Any Year</option>
+          {% for y in years %}
+            <option value="{{ y }}" {% if y == year %}selected{% endif %}>{{ y }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search parts..." value="{{ query }}">
+          <button class="btn btn-outline-secondary" type="submit">Search</button>
+        </div>
+      </div>
     </div>
   </form>
   {% if query %}

@@ -1,3 +1,10 @@
+from django.http import JsonResponse
+def get_models_for_make(request):
+    from marketplace.models import Item
+    make = request.GET.get('make', '')
+    models = Item.objects.filter(make__iexact=make).values_list('model_name', flat=True).distinct()
+    models = [m for m in models if m]
+    return JsonResponse({'models': models})
 from django.shortcuts import get_object_or_404
 def edit_item(request, item_id):
     from marketplace.models import Item, ItemImage
@@ -25,11 +32,39 @@ from marketplace.models import Item
 
 def home(request):
     query = request.GET.get('q', '')
+    make = request.GET.get('make', '')
+    model = request.GET.get('model', '')
+    year = request.GET.get('year', '')
     items = Item.objects.all()
+    if make:
+        items = items.filter(make__iexact=make)
+    if model:
+        items = items.filter(model_name__iexact=model)
+    if year:
+        items = items.filter(year__iexact=year)
     if query:
-        items = items.filter(title__icontains=query) | items.filter(description__icontains=query)
+        from django.db.models import Q
+        items = items.filter(
+            Q(title__icontains=query) |
+            Q(description__icontains=query) |
+            Q(category__icontains=query) |
+            Q(price__icontains=query)
+        )
     items = items.order_by('-created_at')
-    return render(request, 'home.html', {'items': items, 'query': query})
+    # Get distinct values for dropdowns
+    makes = Item.objects.values_list('make', flat=True).distinct().exclude(make__isnull=True).exclude(make__exact='')
+    models = Item.objects.values_list('model_name', flat=True).distinct().exclude(model_name__isnull=True).exclude(model_name__exact='')
+    years = Item.objects.values_list('year', flat=True).distinct().exclude(year__isnull=True).exclude(year__exact='')
+    return render(request, 'home.html', {
+        'items': items,
+        'query': query,
+        'make': make,
+        'model': model,
+        'year': year,
+        'makes': makes,
+        'models': models,
+        'years': years,
+    })
 def item_detail(request, item_id):
     from marketplace.models import Item
     item = get_object_or_404(Item, id=item_id)
