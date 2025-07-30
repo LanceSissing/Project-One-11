@@ -119,6 +119,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # Default primary key field type
@@ -132,6 +133,17 @@ AUTH_USER_MODEL = 'accounts.User'
 # Redirect to account page after login
 LOGIN_REDIRECT_URL = '/accounts/account/'
 
+
 # Media files (user uploads)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# Heroku deployment settings
+import dj_database_url
+import django_heroku
+
+DEBUG = False
+ALLOWED_HOSTS = ['*']
+
+DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+django_heroku.settings(locals())
