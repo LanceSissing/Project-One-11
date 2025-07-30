@@ -50,4 +50,35 @@ Transaction
 4. Run migrations and start the development server
 
 ---
+
+## Technical Improvements & Notes
+
+### Cloudinary Integration for Media Storage
+- Configured Django to use Cloudinary for all user-uploaded images, ensuring reliable, scalable, and secure media hosting.
+- Credentials are managed via environment variables for security (see `.env` and Heroku Config Vars).
+- Local `.env` file and `.gitignore` prevent accidental exposure of sensitive keys.
+- All new images uploaded via the deployed app are stored in Cloudinary and displayed reliably.
+
+### Heroku Deployment
+- Project is fully configured for deployment on Heroku, including:
+  - Automatic database switching (SQLite locally, PostgreSQL on Heroku)
+  - Static files collected to `staticfiles/` for production serving
+  - Environment-specific settings for debug, allowed hosts, and database engine
+
+### Security Best Practices
+- All sensitive credentials (Cloudinary, database, etc.) are stored in environment variables, not in code or version control.
+- `.env` is included in `.gitignore` to prevent leaks.
+
+### Data Migration & Testing
+- Used Django `dumpdata` and `loaddata` for safe migration of local data to Heroku.
+- Ensured UTF-8 encoding for compatibility and error-free imports.
+- Manual migration of images recommended for legacy data; new uploads are handled automatically.
+
+### Additional Improvements
+- Modular Django app structure (`accounts`, `marketplace`)
+- Custom user model for future extensibility
+- Clear separation of static and media files
+- Step-by-step documentation and troubleshooting for deployment and media issues
+
+---
 For more details, see the project planning document or contact the maintainer.
