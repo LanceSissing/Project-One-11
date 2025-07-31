@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>Account Page</h2>
+  <h2>{{ user.username }}</h2>
   {% if messages %}
     {% for message in messages %}
       <div id="successModal" class="modal" style="display:block;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:1000;">
@@ -12,8 +12,11 @@
     {% endfor %}
   {% endif %}
 
+  <div class="mb-4"></div>
   <div class="card mb-4">
-    <div class="card-header bg-primary text-white">User Details</div>
+    <div class="card-header bg-primary text-white">Account Details</div>
+    <!-- ...existing user details content... -->
+    <!-- Messages button will be moved below -->
     <div class="card-body">
       <p><strong>Username:</strong> {{ user.username }}</p>
       <p><strong>Email:</strong> {{ user.email|default:'(not set)' }}</p>
@@ -23,18 +26,8 @@
     </div>
   </div>
 
-  <div class="card mb-4">
-    <div class="card-header bg-success text-white">Add New Item</div>
-    <div class="card-body">
-      <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ item_form.as_p }}
-        <label for="id_images">Images (up to 6):</label>
-        <input type="file" name="images" id="id_images" multiple accept="image/*">
-        <button type="submit" class="btn btn-success">Add Item</button>
-      </form>
-    </div>
-  </div>
+  <a href="/marketplace/inbox/" class="btn btn-info my-3">Messages</a>
+  <!-- Add New Item section moved below -->
 
   <div class="card">
     <div class="card-header bg-info text-white">Your Listed Items</div>
@@ -42,7 +35,7 @@
       {% if items %}
         <ul class="list-group">
           {% for item in items %}
-            <li class="list-group-item">
+            <li class="list-group-item mb-3">
               <strong>{{ item.title }}</strong> ({{ item.category }})<br>
               {{ item.description }}<br>
               <span class="text-muted">Price: ${{ item.price }}</span><br>
@@ -55,7 +48,7 @@
                 </div>
               {% endif %}
               <a href="{% url 'edit_item' item.id %}" class="btn btn-sm btn-warning mt-2">Edit</a>
-            </li>
+            </li> 
           {% endfor %}
         </ul>
       {% else %}
@@ -63,4 +56,32 @@
       {% endif %}
     </div>
   </div>
+
+  <div class="card mb-4">
+    <div class="card-header bg-success text-white">Add New Item</div>
+    <div class="card-body">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+  <div class="mt-4"></div>
+        <div class="row">
+          <div class="col-md-2 mb-2">{{ item_form.make.label_tag }}{{ item_form.make }}</div>
+          <div class="col-md-2 mb-2">{{ item_form.year.label_tag }}{{ item_form.year }}</div>
+          <div class="col-md-2 mb-2">{{ item_form.model_name.label_tag }}{{ item_form.model_name }}</div>
+          <div class="col-md-2 mb-2">{{ item_form.model_designation.label_tag }}{{ item_form.model_designation }}</div>
+          <div class="col-md-2 mb-2">{{ item_form.category.label_tag }}{{ item_form.category }}</div>
+        </div>
+        {{ item_form.title.label_tag }}{{ item_form.title }}<br>
+        {{ item_form.description.label_tag }}{{ item_form.description }}<br>
+        {{ item_form.price.label_tag }}{{ item_form.price }}<br>
+        <label for="id_images">Images (up to 6):</label>
+        <input type="file" name="images" id="id_images" multiple accept="image/*">
+        <button type="submit" class="btn btn-success mt-3">Add Item</button>
+      </form>
+    </div>
+  </div>
+  <div class="mt-4"></div>
+    </div>
+  </div>
 {% endblock %}
+
+  <!-- Removed stray spacing div at end -->

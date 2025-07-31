@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h2>Your Inbox</h2>
+  {% if messages %}
+    <ul class="list-group">
+      {% for message in messages %}
+        <li class="list-group-item {% if not message.is_read %}list-group-item-info{% endif %}">
+          <a href="{% url 'message_detail' message.id %}"><strong>{{ message.subject }}</strong></a>
+          <br>
+          From: {{ message.sender.username }} | Regarding: {{ message.item.title }}
+          <br>
+          <small>{{ message.timestamp|date:"Y-m-d H:i" }}</small>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No messages yet.</p>
+  {% endif %}
+{% endblock %}

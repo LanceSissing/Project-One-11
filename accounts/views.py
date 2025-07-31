@@ -99,6 +99,7 @@ def account(request):
     else:
         item_form = ItemForm()
     return render(request, 'account.html', {'item_form': item_form, 'items': items})
+from marketplace.forms import ItemForm
 
 @csrf_protect
 def logout_view(request):
