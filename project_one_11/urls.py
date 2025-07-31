@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),  # Registration and custom views FIRST
     path('accounts/', include('django.contrib.auth.urls')),  # Login, logout, password management SECOND
     path('', include('accounts.urls')),  # Homepage
+    path('marketplace/', include('marketplace.urls')),
 ]
 
 if settings.DEBUG:

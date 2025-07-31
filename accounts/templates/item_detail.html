@@ -4,6 +4,7 @@
   <p>{{ item.description }}</p>
   <p>Price: ${{ item.price }}</p>
   <p>Posted by: {{ item.owner.email }}</p>
+  <a href="{% url 'send_message' item.id %}" class="btn btn-success">Contact Seller</a>
   {% if item.images.all %}
     <div class="row mb-3">
       {% for image in item.images.all %}
