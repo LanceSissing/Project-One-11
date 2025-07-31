@@ -43,14 +43,6 @@ Transaction
 
 *Note: This is a simplified ERD. More fields and relationships will be added as the project develops.*
 
-## Getting Started
-1. Clone the repository
-2. Set up a Python virtual environment
-3. Install dependencies (`pip install -r requirements.txt`)
-4. Run migrations and start the development server
-
----
-
 ## Technical Improvements & Notes
 
 ### Cloudinary Integration for Media Storage
