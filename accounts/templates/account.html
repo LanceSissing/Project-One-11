@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="account-panel">
+
   <h2>{{ user.username }}</h2>
   {% if messages %}
     {% for message in messages %}
@@ -15,8 +17,6 @@
   <div class="mb-4"></div>
   <div class="card mb-4">
     <div class="card-header bg-primary text-white">Account Details</div>
-    <!-- ...existing user details content... -->
-    <!-- Messages button will be moved below -->
     <div class="card-body">
       <p><strong>Username:</strong> {{ user.username }}</p>
       <p><strong>Email:</strong> {{ user.email|default:'(not set)' }}</p>
@@ -26,10 +26,15 @@
     </div>
   </div>
 
-  <a href="/marketplace/inbox/" class="btn btn-info my-3">Messages</a>
-  <!-- Add New Item section moved below -->
-
-  <div class="card">
+  <div class="card mb-4">
+  <div class="card-header">Messages</div>
+  <div class="card-body text-center">
+    <p>Click the button below to access your messages or send a new message.</p>
+    <a href="/marketplace/inbox/" class="btn btn-info my-3">Messages</a>
+  </div>
+  </div>
+  
+  <div class="card mb-4">
     <div class="card-header bg-info text-white">Your Listed Items</div>
     <div class="card-body">
       {% if items %}
@@ -82,6 +87,7 @@
   <div class="mt-4"></div>
     </div>
   </div>
+</div>  
 {% endblock %}
 
   <!-- Removed stray spacing div at end -->

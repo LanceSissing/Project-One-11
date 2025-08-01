@@ -1,31 +1,42 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f8f8f8;
+  background: #fff;
   color: #222;
 }
+
 header {
-  background: #222;
+  background: #fe7125 !important;
   color: #fff;
   padding: 1em 0;
 }
+
 header h1 {
   margin: 0;
   text-align: center;
 }
-nav {
+
+/* nav {
+  background: #fe7125 !important;
   text-align: center;
   margin-top: 0.5em;
+} */
+  
+.navbar {
+  background-color: #fe7125 !important;
 }
+
 nav a {
   color: #fff;
   text-decoration: none;
   margin: 0 1em;
   font-weight: bold;
 }
+
 nav a:hover {
   text-decoration: underline;
 }
+
 main {
   max-width: 800px;
   margin: 2em auto;
@@ -34,8 +45,9 @@ main {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
+
 footer {
-  background: #222;
+  background: #fe7125 !important;
   color: #fff;
   text-align: center;
   padding: 1em 0;
@@ -44,6 +56,7 @@ footer {
   bottom: 0;
   width: 100%;
 }
+
 @media (max-width: 600px) {
   main {
     padding: 1em;
@@ -52,4 +65,71 @@ footer {
     margin: 0 0.5em;
     font-size: 0.95em;
   }
+}
+
+.card {
+  border: 2px solid #fe7125 !important;
+  background-color: rgba(254, 113, 37, 0.3) !important;
+}
+
+.btn-view-details,
+.btn-view-details:visited {
+  background-color: #fe7125 !important;
+  border-color: #fe7125 !important;
+  color: #fff !important;
+}
+
+.search-form input[type="text"],
+.search-form select {
+  border: 2px solid #fe7125 !important;
+  box-shadow: none;
+}
+
+.search-form button[type="submit"] {
+  border: 2px solid #fe7125 !important;
+  background-color: #fe7125 !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.search-form button[type="submit"]:hover,
+.search-form button[type="submit"]:focus {
+  background-color: #d95f1b !important;
+  border-color: #d95f1b !important;
+  color: #fff !important;
+}
+
+/* Make card headers use the orange background and white text */
+.card-header {
+  background-color: #fe7125 !important;
+  color: #fff !important;
+}
+
+/* Add a border to the main account panel */
+.account-panel {
+  border: 2px solid #fe7125 !important;
+  border-radius: 8px;
+  padding: 1.5em;
+  background: #fff;
+  margin-bottom: 2em;
+}
+
+.list-group-item {
+  margin-bottom: 1em !important;
+  border-radius: 6px;
+}
+.list-group-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+.btn-info.my-3 {
+  background-color: #fe7125 !important;
+  border-color: #fe7125 !important;
+  color: #fff !important;
+}
+
+.btn-success.mt-3 {
+  background-color: #fe7125 !important;
+  border-color: #fe7125 !important;
+  color: #fff !important;
 }
