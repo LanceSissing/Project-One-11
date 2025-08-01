@@ -133,3 +133,41 @@ footer {
   border-color: #fe7125 !important;
   color: #fff !important;
 }
+
+.list-group-item {
+  margin-bottom: 1em !important;
+  border-radius: 6px;
+  border: 2px solid #ffc107 !important;
+  background-color: #ffffff
+}
+.list-group-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+body, h1, h2, h3, h4, h5, h6, .navbar, .card-header {
+  font-family: 'Oswald', Arial, sans-serif;
+}
+
+/* Make the navbar brand title larger and use Oswald font */
+.navbar-brand {
+  font-family: 'Oswald', Arial, sans-serif;
+  font-size: 3rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Make navbar links larger and use Oswald font */
+.navbar-nav .nav-link {
+  font-family: 'Oswald', Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Reduce horizontal padding between navbar links */
+.navbar-nav .nav-link {
+  padding-left: 8px !important;
+  padding-right: 12px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
