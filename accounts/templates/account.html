@@ -16,7 +16,7 @@
 
   <div class="mb-4"></div>
   <div class="card mb-4">
-    <div class="card-header bg-primary text-white">Account Details</div>
+    <div class="card-header bg-primary text-white">ACCOUNT DETAILS</div>
     <div class="card-body">
       <p><strong>Username:</strong> {{ user.username }}</p>
       <p><strong>Email:</strong> {{ user.email|default:'(not set)' }}</p>
@@ -27,15 +27,15 @@
   </div>
 
   <div class="card mb-4">
-  <div class="card-header">Messages</div>
+  <div class="card-header">MESSAGES</div>
   <div class="card-body text-center">
     <p>Click the button below to access your messages or send a new message.</p>
-    <a href="/marketplace/inbox/" class="btn btn-info my-3">Messages</a>
+    <a href="/marketplace/inbox/" class="btn btn-info my-3">MESSAGES</a>
   </div>
   </div>
   
   <div class="card mb-4">
-    <div class="card-header bg-info text-white">Your Listed Items</div>
+    <div class="card-header bg-info text-white">YOUR LISTED ITEMS</div>
     <div class="card-body">
       {% if items %}
         <ul class="list-group">
@@ -63,7 +63,7 @@
   </div>
 
   <div class="card mb-4">
-    <div class="card-header bg-success text-white">Add New Item</div>
+    <div class="card-header bg-success text-white">ADD NEW ITEM</div>
     <div class="card-body">
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
