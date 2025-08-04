@@ -179,3 +179,13 @@ header {
   box-shadow: 0 4px 3px rgba(0,0,0,0.2);
   z-index: 1030;
 }
+
+footer {
+  color: #111 !important;
+}
+
+.btn-success {
+  background-color: #fe7125 !important;
+  border-color: #fe7125 !important;
+  color: #fff !important;
+}

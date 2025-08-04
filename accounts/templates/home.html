@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>MARKETPLACE LISTINGS</h2>
+  <h2>SEARCH</h2>
   <form method="get" action="" class="mb-4 search-form">
     <div class="row g-2">
       <div class="col-md-3">
@@ -50,7 +50,7 @@
       <div class="col-md-4">
         <div class="input-group">
           <input type="text" name="q" class="form-control" placeholder="Search parts..." value="{{ query }}">
-          <button class="btn btn-outline-secondary" type="submit">Search</button>
+          <button class="btn btn-outline-secondary" type="submit">SEARCH</button>
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@
           <div class="card-body">
             <h5 class="card-title">{{ item.title }}</h5>
             <p class="card-text">${{ item.price }}</p>
-            <a href="{% url 'item_detail' item.id %}" class="btn btn-view-details">View Details</a>
+            <a href="{% url 'item_detail' item.id %}" class="btn btn-view-details">VIEW DETAILS</a>
           </div>
         </div>
       </div>
