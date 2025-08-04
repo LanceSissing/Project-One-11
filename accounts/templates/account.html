@@ -23,7 +23,8 @@
       <p><strong>Buyer:</strong> {{ user.is_buyer }}</p>
       <p><strong>Seller:</strong> {{ user.is_seller }}</p>
       <p><strong>Business:</strong> {{ user.is_business }}</p>
-    </div>
+    <a href="{% url 'edit_account' %}" class="btn btn-warning mt-2">EDIT</a>
+  </div>
   </div>
 
   <div class="card mb-4">
@@ -80,7 +81,7 @@
         {{ item_form.price.label_tag }}{{ item_form.price }}<br>
         <label for="id_images">Images (up to 6):</label>
         <input type="file" name="images" id="id_images" multiple accept="image/*">
-        <button type="submit" class="btn btn-success mt-3">Add Item</button>
+        <button type="submit" class="btn btn-success mt-3">ADD ITEM</button>
       </form>
     </div>
   </div>

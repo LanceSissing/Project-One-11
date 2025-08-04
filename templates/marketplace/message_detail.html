@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>Message Detail</h2>
-  <p><strong>Subject:</strong> {{ message.subject }}</p>
-  <p><strong>From:</strong> {{ message.sender.username }}</p>
-  <p><strong>Regarding item:</strong> {{ message.item.title }}</p>
-  <p><strong>Sent:</strong> {{ message.timestamp|date:"Y-m-d H:i" }}</p>
+  <h2>MESSAGE DETAIL</h2>
+  <p><strong>SUBJECT:</strong> {{ message.subject }}</p>
+  <p><strong>FROM:</strong> {{ message.sender.username }}</p>
+  <p><strong>REGARDING ITEM:</strong> {{ message.item.title }}</p>
+  <p><strong>SENT:</strong> {{ message.timestamp|date:"Y-m-d H:i" }}</p>
   <hr>
   <p>{{ message.body }}</p>
-  <a href="{% url 'messages_inbox' %}" class="btn btn-secondary">Back to Inbox</a>
+  <a href="{% url 'messages_inbox' %}" class="btn btn-warning">BACK TO INBOX</a>
 {% endblock %}

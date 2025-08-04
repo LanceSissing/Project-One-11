@@ -38,4 +38,8 @@ def send_message(request, item_id):
     return render(request, 'marketplace/send_message.html', {'form': form, 'item': item, 'recipient': recipient})
 from django.shortcuts import render
 
+def edit_account_view(request):
+    # Placeholder view for now
+    return render(request, 'edit_account.html')
+
 # Create your views here.

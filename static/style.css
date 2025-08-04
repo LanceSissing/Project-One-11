@@ -107,7 +107,7 @@ footer {
 
 /* Add a border to the main account panel */
 .account-panel {
-  border: 2px solid #fe7125 !important;
+  /* border: 2px solid #fe7125 !important; */
   border-radius: 8px;
   padding: 1.5em;
   background: #fff;
@@ -137,7 +137,7 @@ footer {
 .list-group-item {
   margin-bottom: 1em !important;
   border-radius: 6px;
-  border: 2px solid #ffc107 !important;
+  border: 2px solid #fe7125 !important;
   background-color: #ffffff
 }
 .list-group-item:last-child {
@@ -188,4 +188,21 @@ footer {
   background-color: #fe7125 !important;
   border-color: #fe7125 !important;
   color: #fff !important;
+}
+
+.list-group-item a {
+  color: #111 !important;
+  text-decoration: none;
+}
+.list-group-item a:hover {
+  text-decoration: underline;
+}
+
+/* Use Roboto for item descriptions and similar text */
+.item-description,
+.text-body,
+.description,
+p,
+span {
+  font-family: 'Roboto', Arial, sans-serif;
 }
