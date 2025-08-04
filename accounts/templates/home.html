@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>SEARCH</h2>
+  <h2>SEARCH LISTINGS</h2>
   <form method="get" action="" class="mb-4 search-form">
     <div class="row g-2">
       <div class="col-md-3">
@@ -67,7 +67,7 @@
           {% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ item.title }}</h5>
-            <p class="card-text">${{ item.price }}</p>
+            <p class="card-text">£{{ item.price }}</p>
             <a href="{% url 'item_detail' item.id %}" class="btn btn-view-details">VIEW DETAILS</a>
           </div>
         </div>

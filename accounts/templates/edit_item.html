@@ -13,7 +13,7 @@
   {% if item.images.all %}
     <div>
       {% for image in item.images.all %}
-        <div style="display:inline-block;position:relative;margin:2px;">
+        <div style="display:inline-block;position:relative;margin:10px;">
           <img src="{{ image.image.url }}" alt="Item image" style="max-width:120px;max-height:120px;border-radius:4px;">
           <a href="{% url 'delete_item_image' image.id %}" class="btn btn-sm btn-danger" style="position:absolute;top:2px;right:2px;">Delete</a>
         </div>

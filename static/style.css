@@ -206,3 +206,8 @@ p,
 span {
   font-family: 'Roboto', Arial, sans-serif;
 }
+input[name="subject"],
+textarea[name="body"] {
+  border: 2px solid #fe7125 !important;
+  border-radius: 6px;
+}
