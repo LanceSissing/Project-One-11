@@ -69,7 +69,7 @@ footer {
 
 .card {
   border: 2px solid #fe7125 !important;
-  background-color: rgba(254, 113, 37, 0.3) !important;
+  background-color: #ebeaea !important;
 }
 
 .btn-view-details,
@@ -210,4 +210,12 @@ input[name="subject"],
 textarea[name="body"] {
   border: 2px solid #fe7125 !important;
   border-radius: 6px;
+}
+
+.add-item-form input,
+.add-item-form select,
+.add-item-form textarea {
+  border: 2px solid #fe7125 !important;
+  border-radius: 6px;
+  box-shadow: none;
 }
