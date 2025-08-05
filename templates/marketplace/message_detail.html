@@ -8,4 +8,4 @@
   <hr>
   <p>{{ message.body }}</p>
   <a href="{% url 'messages_inbox' %}" class="btn btn-warning">BACK TO INBOX</a>
-{% endblock %}
+  <a href="{% url 'message_reply' message.id %}" class="btn btn-warning">REPLY</a>{% endblock %}
