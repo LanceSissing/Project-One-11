@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
-  <h2>SEARCH LISTINGS</h2>
+
+  <div class="hero-section p-4 mb-4 rounded text-center" style="background: #ebeaea; border: 2px solid #fe7125; display: flex; flex-direction: column; align-items: center;">
+    <div>
+      <h2 class="mb-1" style="color: #000000;">WELCOME TO PROJECT-ONE-11 MARKETPLACE</h2>
+      <p class="mb-0 text-muted">Find, buy, and sell the parts you need. Search latest listings or add your own.</p>
+    </div>
+      <img src="{% static 'images/parts-outline.svg' %}" alt="Parts Outline" style="height: 64px; margin-bottom: 16px;">
+</div>
+
+  <h4>SEARCH LISTINGS</h4>
   <form method="get" action="" class="mb-4 search-form">
     <div class="row g-2">
       <div class="col-md-3">
