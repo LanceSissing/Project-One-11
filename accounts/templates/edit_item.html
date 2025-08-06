@@ -1,26 +1,37 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>Edit Item: {{ item.title }}</h2>
+  <h2>EDIT ITEM:  {{ item.title }}</h2>
   <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
+    <div class="row">
+      <div class="col-md-4 mb-2">{{ form.make.label_tag }}{{ form.make }}</div>
+      <div class="col-md-4 mb-2">{{ form.year.label_tag }}{{ form.year }}</div>
+      <div class="col-md-4 mb-2">{{ form.model_name.label_tag }}{{ form.model_name }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 mb-2">{{ form.model_designation.label_tag }}{{ form.model_designation }}</div>
+      <div class="col-md-4 mb-2">{{ form.category.label_tag }}{{ form.category }}</div>
+      <div class="col-md-4 mb-2">{{ form.title.label_tag }}{{ form.title }}</div>
+    </div>
+    {{ form.description.label_tag }}{{ form.description }}<br>
+    {{ form.price.label_tag }}{{ form.price }}<br>
     <label for="id_images">Add Images (up to 6):</label>
     <input type="file" name="images" id="id_images" multiple accept="image/*">
-    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <button type="submit" class="btn btn-warning">SAVE CHANGES</button>
   </form>
   <hr>
-  <h4>Current Images:</h4>
+  <h4>CURRENT IMAGES:</h4>
   {% if item.images.all %}
     <div>
       {% for image in item.images.all %}
         <div style="display:inline-block;position:relative;margin:10px;">
           <img src="{{ image.image.url }}" alt="Item image" style="max-width:120px;max-height:120px;border-radius:4px;">
-          <a href="{% url 'delete_item_image' image.id %}" class="btn btn-sm btn-danger" style="position:absolute;top:2px;right:2px;">Delete</a>
+          <a href="{% url 'delete_item_image' image.id %}" class="btn btn-sm btn-danger" style="position:absolute;top:2px;right:2px;">DELETE</a>
         </div>
       {% endfor %}
     </div>
   {% else %}
     <p>No images uploaded for this item.</p>
   {% endif %}
-  <a href="{% url 'account' %}" class="btn btn-secondary mt-3">Back to Account</a>
+  <a href="{% url 'account' %}" class="btn btn-warning mt-3">BACK TO ACCOUNT</a>
 {% endblock %}

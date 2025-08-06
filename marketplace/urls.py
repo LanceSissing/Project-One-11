@@ -8,4 +8,5 @@ urlpatterns = [
     path('account/edit/', views.edit_account_view, name='edit_account'),
     path('messages/<int:message_id>/reply/', views.message_reply, name='message_reply'),
     path('sent/', views.sent_messages, name='sent_messages'),
-]
+    path('message/<int:message_id>/delete/', views.delete_message, name='delete_message'),
+    ]

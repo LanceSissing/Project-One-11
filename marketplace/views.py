@@ -42,6 +42,15 @@ def message_reply(request, message_id):
         'original_message': original_message,
     })
 
+@login_required
+def delete_message(request, message_id):
+    message_obj = get_object_or_404(Message, pk=message_id, recipient=request.user)
+    if request.method == 'POST':
+        message_obj.delete()
+        return redirect('messages_inbox')
+    return redirect('message_detail', message_id=message_id)
+
+
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Item, Message
