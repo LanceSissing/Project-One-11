@@ -1,37 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>MESSAGE DETAIL</h2>
-  <p><strong>SUBJECT:</strong> {{ message.subject }}</p>
-  <p><strong>FROM:</strong> {{ message.sender.username }}</p>
-  <p><strong>REGARDING ITEM:</strong> {{ message.item.title }}</p>
-  <p><strong>SENT:</strong> {{ message.timestamp|date:"Y-m-d H:i" }}</p>
-  <hr>
-  <p>{{ message.body }}</p>
-  <a href="{% url 'messages_inbox' %}" class="btn btn-warning">BACK TO INBOX</a>
-  <a href="{% url 'message_reply' message.id %}" class="btn btn-warning">REPLY</a>
-  <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
-    DELETE
-  </button>
-  
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="deleteModalLabel">CONFIRM DELETE</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          Are you sure you want to delete this message?
-        </div>
-        <div class="modal-footer">
-          <form method="post" action="{% url 'delete_message' message.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">YES - DELETE</button>
-          </form>
-          <button type="button" class="btn btn-warning" data-bs-dismiss="modal">CANCEL</button>
+  <section aria-labelledby="message-detail-heading" class="container">
+    <h2 id="message-detail-heading">MESSAGE DETAIL</h2>
+    <article class="mb-4">
+      <p><strong>SUBJECT:</strong> {{ message.subject }}</p>
+      <p><strong>FROM:</strong> {{ message.sender.username }}</p>
+      <p><strong>REGARDING ITEM:</strong> {{ message.item.title }}</p>
+      <p><strong>SENT:</strong> {{ message.timestamp|date:"Y-m-d H:i" }}</p>
+      <hr>
+      <p>{{ message.body }}</p>
+    </article>
+    <nav class="mb-3">
+      <a href="{% url 'messages_inbox' %}" class="btn btn-warning">BACK TO INBOX</a>
+      {% if message.recipient == user %}
+        <a href="{% url 'message_reply' message.id %}" class="btn btn-warning">REPLY</a>
+      {% endif %}
+      <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
+        DELETE
+      </button>
+    </nav>
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="deleteModalLabel">CONFIRM DELETE</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this message?
+          </div>
+          <div class="modal-footer">
+            <form method="post" action="{% url 'delete_message' message.id %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">YES - DELETE</button>
+            </form>
+            <button type="button" class="btn btn-warning" data-bs-dismiss="modal">CANCEL</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-    
-  {% endblock %}
+  </section>
+{% endblock %}

@@ -1,22 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>{{ item.title }}</h2>
-  <p>{{ item.description }}</p>
-  <p>Price: £{{ item.price }}</p>
-  <p>Posted by: {{ item.owner.email }}</p>
+<main class="mt-4 mb-4">
+  <section aria-labelledby="item-title">
+    <h2 id="item-title">{{ item.title }}</h2>
+    <p>{{ item.description }}</p>
+    <p>Price: £{{ item.price }}</p>
+    <p>Posted by: {{ item.owner.email }}</p>
+  </section>
+
   {% if item.images.all %}
-    <div class="row mb-3 g-3 justify-content-start">
-      {% for image in item.images.all %}
-        <div class="col-auto">
-          <div style="width: 140px; height: 140px; overflow: hidden; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border: 2px solid #fe7125;">
-            <img src="{{ image.image.url }}" class="gallery-thumb"
-                 data-bs-toggle="modal" data-bs-target="#galleryModal"
-                 data-img-url="{{ image.image.url }}" alt="Item image"
-                 style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; border-radius: 8px;" />
+    <section aria-labelledby="gallery-heading" class="mb-3">
+      <h3 id="gallery-heading" class="visually-hidden">Image Gallery</h3>
+      <div class="row g-3 justify-content-start">
+        {% for image in item.images.all %}
+          <div class="col-auto">
+            <figure style="width: 140px; height: 140px; overflow: hidden; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #f8f9fa; border: 2px solid #fe7125;">
+              <img src="{{ image.image.url }}" class="gallery-thumb"
+                   data-bs-toggle="modal" data-bs-target="#galleryModal"
+                   data-img-url="{{ image.image.url }}" alt="Item image"
+                   style="width: 100%; height: 100%; object-fit: cover; cursor: pointer; border-radius: 8px;" />
+              <figcaption class="visually-hidden">Image for {{ item.title }}</figcaption>
+            </figure>
           </div>
-        </div>
-      {% endfor %}
-    </div>
+        {% endfor %}
+      </div>
+    </section>
     <!-- Modal -->
     <div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -44,8 +52,10 @@
       });
     </script>
   {% endif %}
-  <div class="mt-4 d-flex gap-2">
+
+  <nav class="mt-4 d-flex gap-2" aria-label="Item actions">
     <a href="{% url 'send_message' item.id %}" class="btn btn-success">CONTACT SELLER</a>
     <a href="/" class="btn btn-warning">BACK TO LISTINGS</a>
-  </div>
+  </nav>
+</main>
 {% endblock %}

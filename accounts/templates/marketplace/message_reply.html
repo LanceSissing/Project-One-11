@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>REPLY TO: {{ original_message.sender.username }}</h2>
-  <p><strong>ORIGINAL MESSAGE:</strong> {{ original_message.body }}</p>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-warning">SEND REPLY</button>
-  </form>
+  <section aria-labelledby="reply-heading" class="container">
+    <h2 id="reply-heading">REPLY TO {{ original_message.sender.username }}</h2>
+    <article class="mb-3">
+      <p><strong>ORIGINAL MESSAGE:</strong> {{ original_message.body }}</p>
+    </article>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-warning">SEND REPLY</button>
+    </form>
+  </section>
 {% endblock %}

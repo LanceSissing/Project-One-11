@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>Register</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Register</button>
-  </form>
+  <main>
+    <section aria-labelledby="register-heading" class="container my-4">
+      <h2 id="register-heading">Register</h2>
+      <form method="post" autocomplete="off">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-warning" style="background-color: #fe7125; border-color: #fe7125; color: #fff;">Register</button>
+      </form>
+    </section>
+  </main>
 {% endblock %}

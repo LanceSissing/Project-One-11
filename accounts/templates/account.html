@@ -1,100 +1,108 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="account-panel">
+<main>
+  <div class="account-panel">
 
-  <h2>{{ user.username }}</h2>
-  {% if messages %}
-    {% for message in messages %}
-      <div id="successModal" class="modal" style="display:block;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:1000;">
-        <div style="background:#fff;padding:2em;margin:10vh auto;width:300px;text-align:center;border-radius:8px;">
-          <h3>{{ message }}</h3>
-          <button onclick="document.getElementById('successModal').style.display='none'">Close</button>
+    <h2>{{ user.username }}</h2>
+    {% if messages %}
+      {% for message in messages %}
+        <div id="successModal" class="modal" style="display:block;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(0,0,0,0.5);z-index:1000;">
+          <div style="background:#fff;padding:2em;margin:10vh auto;width:300px;text-align:center;border-radius:8px;">
+            <h3>{{ message }}</h3>
+            <button onclick="document.getElementById('successModal').style.display='none'">Close</button>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    <section aria-labelledby="account-details-heading">
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header bg-primary text-white" id="account-details-heading">ACCOUNT DETAILS</div>
+            <div class="card-body">
+              <p><strong>Username:</strong> {{ user.username }}</p>
+              <p><strong>Email:</strong> {{ user.email|default:'(not set)' }}</p>
+              <p><strong>Buyer:</strong> {{ user.is_buyer }}</p>
+              <p><strong>Seller:</strong> {{ user.is_seller }}</p>
+              <p><strong>Business:</strong> {{ user.is_business }}</p>
+              <a href="{% url 'edit_account' %}" class="btn btn-warning mt-2">EDIT</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card h-100">
+            <div class="card-header" id="messages-heading">MESSAGES</div>
+            <div class="card-body text-center">
+              <p>Click the button below to access your messages or send a new message.</p>
+              <a href="/marketplace/inbox/" class="btn btn-info my-3">MESSAGES</a>
+            </div>
+          </div>
         </div>
       </div>
-    {% endfor %}
-  {% endif %}
+    </section>
 
- <div class="row">
-  <div class="col-md-6 mb-4">
-    <div class="card h-100">
-      <div class="card-header bg-primary text-white">ACCOUNT DETAILS</div>
-      <div class="card-body">
-        <p><strong>Username:</strong> {{ user.username }}</p>
-        <p><strong>Email:</strong> {{ user.email|default:'(not set)' }}</p>
-        <p><strong>Buyer:</strong> {{ user.is_buyer }}</p>
-        <p><strong>Seller:</strong> {{ user.is_seller }}</p>
-        <p><strong>Business:</strong> {{ user.is_business }}</p>
-        <a href="{% url 'edit_account' %}" class="btn btn-warning mt-2">EDIT</a>
+    <section aria-labelledby="listed-items-heading">
+      <div class="card mb-4">
+        <div class="card-header bg-info text-white" id="listed-items-heading">YOUR LISTED ITEMS</div>
+        <div class="card-body">
+          {% if items %}
+            <ul class="list-group">
+              {% for item in items %}
+                <li class="list-group-item mb-3">
+                  <article>
+                    <strong>{{ item.title }}</strong> ({{ item.category }})<br>
+                    {{ item.description }}<br>
+                    <span class="text-muted">Price: ${{ item.price }}</span><br>
+                    <small>Posted: {{ item.created_at|date:"Y-m-d H:i" }}</small>
+                    {% if item.images.all %}
+                      <div class="mt-2">
+                        {% for image in item.images.all %}
+                          <img src="{{ image.image.url }}" alt="Item image" style="max-width:120px;max-height:120px;margin:2px;border-radius:4px;">
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    <a href="{% url 'edit_item' item.id %}" class="btn btn-sm btn-warning mt-2">EDIT</a>
+                  </article>
+                </li>
+              {% endfor %}
+            </ul>
+          {% else %}
+            <p>You have not listed any items yet.</p>
+          {% endif %}
+        </div>
       </div>
-    </div>
-  </div>
-  <div class="col-md-6 mb-4">
-    <div class="card h-100">
-      <div class="card-header">MESSAGES</div>
-      <div class="card-body text-center">
-        <p>Click the button below to access your messages or send a new message.</p>
-        <a href="/marketplace/inbox/" class="btn btn-info my-3">MESSAGES</a>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="card mb-4">
-    <div class="card-header bg-info text-white">YOUR LISTED ITEMS</div>
-    <div class="card-body">
-      {% if items %}
-        <ul class="list-group">
-          {% for item in items %}
-            <li class="list-group-item mb-3">
-              <strong>{{ item.title }}</strong> ({{ item.category }})<br>
-              {{ item.description }}<br>
-              <span class="text-muted">Price: ${{ item.price }}</span><br>
-              <small>Posted: {{ item.created_at|date:"Y-m-d H:i" }}</small>
-              {% if item.images.all %}
-                <div class="mt-2">
-                  {% for image in item.images.all %}
-                    <img src="{{ image.image.url }}" alt="Item image" style="max-width:120px;max-height:120px;margin:2px;border-radius:4px;">
-                  {% endfor %}
-                </div>
-              {% endif %}
-              <a href="{% url 'edit_item' item.id %}" class="btn btn-sm btn-warning mt-2">EDIT</a>
-            </li> 
-          {% endfor %}
-        </ul>
-      {% else %}
-        <p>You have not listed any items yet.</p>
-      {% endif %}
-    </div>
-  </div>
+    </section>
 
-  <div class="card mb-4">
-    <div class="card-header bg-success text-white">ADD NEW ITEM</div>
-    <div class="card-body">
-      <form method="post" enctype="multipart/form-data" class="add-item-form">
-        {% csrf_token %}
-  <div class="mt-4"></div>
-        <div class="row">
-          <div class="col-md-2 mb-2">{{ item_form.make.label_tag }}{{ item_form.make }}</div>
-          <div class="col-md-2 mb-2">{{ item_form.year.label_tag }}{{ item_form.year }}</div>
-          <div class="col-md-2 mb-2">{{ item_form.model_name.label_tag }}{{ item_form.model_name }}</div>
-          <div class="col-md-2 mb-2">{{ item_form.model_designation.label_tag }}{{ item_form.model_designation }}</div>
-          <div class="col-md-2 mb-2">{{ item_form.category.label_tag }}{{ item_form.category }}</div>
+    <section aria-labelledby="add-item-heading">
+      <div class="card mb-4">
+        <div class="card-header bg-success text-white" id="add-item-heading">ADD NEW ITEM</div>
+        <div class="card-body">
+          <form method="post" enctype="multipart/form-data" class="add-item-form">
+            {% csrf_token %}
+            <div class="mt-4"></div>
+            <div class="row">
+              <div class="col-md-2 mb-2">{{ item_form.make.label_tag }}{{ item_form.make }}</div>
+              <div class="col-md-2 mb-2">{{ item_form.year.label_tag }}{{ item_form.year }}</div>
+              <div class="col-md-2 mb-2">{{ item_form.model_name.label_tag }}{{ item_form.model_name }}</div>
+              <div class="col-md-2 mb-2">{{ item_form.model_designation.label_tag }}{{ item_form.model_designation }}</div>
+              <div class="col-md-2 mb-2">{{ item_form.category.label_tag }}{{ item_form.category }}</div>
+            </div>
+            {{ item_form.title.label_tag }}{{ item_form.title }}<br>
+            {{ item_form.description.label_tag }}{{ item_form.description }}<br>
+            {{ item_form.price.label_tag }}{{ item_form.price }}<br>
+            <label for="id_images">Images (up to 6):</label>
+            <input type="file" name="images" id="id_images" multiple accept="image/*">
+            <div class="text-center">
+              <button type="submit" class="btn btn-success mt-3">ADD ITEM</button>
+            </div>
+          </form>
         </div>
-        {{ item_form.title.label_tag }}{{ item_form.title }}<br>
-        {{ item_form.description.label_tag }}{{ item_form.description }}<br>
-        {{ item_form.price.label_tag }}{{ item_form.price }}<br>
-        <label for="id_images">Images (up to 6):</label>
-        <input type="file" name="images" id="id_images" multiple accept="image/*">
-        <div class="text-center">
-          <button type="submit" class="btn btn-success mt-3">ADD ITEM</button>
-        </div>
-      </form>
-    </div>
+      </div>
+      <div class="mt-4"></div>
+    </section>
   </div>
-  <div class="mt-4"></div>
-</div>
-  </div>
-</div>  
+</main>
 {% endblock %}
 
- 
+

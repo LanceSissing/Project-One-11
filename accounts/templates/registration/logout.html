@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>LOG OUT</h2>
-  <form method="post" action="/accounts/logout/">
-    {% csrf_token %}
-    <p>Are you sure you want to log out?</p>
-    <button type="submit" class="btn btn-danger">LOG OUT</button>
-  </form>
+  <main>
+    <section aria-labelledby="logout-heading" class="container my-4">
+      <h2 id="logout-heading">LOG OUT</h2>
+      <form method="post" action="/accounts/logout/">
+        {% csrf_token %}
+        <p>Are you sure you want to log out?</p>
+        <button type="submit" class="btn btn-danger">LOG OUT</button>
+      </form>
+    </section>
+  </main>
 {% endblock %}

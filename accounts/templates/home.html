@@ -2,88 +2,96 @@
 {% load static %}
 {% block content %}
 
-  <div class="hero-section p-4 mb-4 rounded text-center" style="background: #ebeaea; border: 2px solid #fe7125; display: flex; flex-direction: column; align-items: center;">
+<main class="mt-4 mb-4">
+  <section aria-labelledby="marketplace-hero" class="hero-section p-4 mb-4 rounded text-center" style="background: #ebeaea; border: 2px solid #fe7125; display: flex; flex-direction: column; align-items: center;">
     <div>
-      <h2 class="mb-1" style="color: #000000;">WELCOME TO PROJECT-ONE-11 MARKETPLACE</h2>
-      <p class="mb-0 text-muted">Find, buy, and sell the parts you need. Search latest listings or add your own.</p>
+      <h2 id="marketplace-hero" class="mb-1" style="color: #000000;">WELCOME TO PROJECT-ONE-11 MARKETPLACE</h2>
+      <p class="mb-0 text-muted">FIND, BUY & SELL THE PARTS YOU NEED</p>
     </div>
-  </div>
+  </section>
 
-  <h4>SEARCH LISTINGS</h4>
-  <form method="get" action="" class="mb-4 search-form">
-    <div class="row g-2">
-      <div class="col-md-3">
-        <select name="make" class="form-select">
-          <option value="">Any Make</option>
-          {% for m in makes %}
-            <option value="{{ m }}" {% if m == make %}selected{% endif %}>{{ m }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="col-md-3">
-        <select name="model" class="form-select" id="model-select">
-          <option value="">Any Model</option>
-          {% for mod in models %}
-            <option value="{{ mod }}" {% if mod == model %}selected{% endif %}>{{ mod }}</option>
-          {% endfor %}
-        </select>
-      </div>
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var makeSelect = document.querySelector('select[name="make"]');
-      var modelSelect = document.getElementById('model-select');
-      makeSelect.addEventListener('change', function() {
-        var make = this.value;
-        fetch('/accounts/ajax/get-models/?make=' + encodeURIComponent(make))
-          .then(response => response.json())
-          .then(data => {
-            modelSelect.innerHTML = '<option value="">Any Model</option>';
-            data.models.forEach(function(mod) {
-              var option = document.createElement('option');
-              option.value = mod;
-              option.textContent = mod;
-              modelSelect.appendChild(option);
+  <section aria-labelledby="search-listings-heading">
+    <h4 id="search-listings-heading">SEARCH LISTINGS</h4>
+    <form method="get" action="" class="mb-4 search-form">
+      <div class="row g-2">
+        <div class="col-md-3">
+          <select name="make" class="form-select">
+            <option value="">Any Make</option>
+            {% for m in makes %}
+              <option value="{{ m }}" {% if m == make %}selected{% endif %}>{{ m }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select name="model" class="form-select" id="model-select">
+            <option value="">Any Model</option>
+            {% for mod in models %}
+              <option value="{{ mod }}" {% if mod == model %}selected{% endif %}>{{ mod }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var makeSelect = document.querySelector('select[name="make"]');
+            var modelSelect = document.getElementById('model-select');
+            makeSelect.addEventListener('change', function() {
+              var make = this.value;
+              fetch('/accounts/ajax/get-models/?make=' + encodeURIComponent(make))
+                .then(response => response.json())
+                .then(data => {
+                  modelSelect.innerHTML = '<option value="">Any Model</option>';
+                  data.models.forEach(function(mod) {
+                    var option = document.createElement('option');
+                    option.value = mod;
+                    option.textContent = mod;
+                    modelSelect.appendChild(option);
+                  });
+                });
             });
           });
-      });
-    });
-  </script>
-      <div class="col-md-2">
-        <select name="year" class="form-select">
-          <option value="">Any Year</option>
-          {% for y in years %}
-            <option value="{{ y }}" {% if y == year %}selected{% endif %}>{{ y }}</option>
-          {% endfor %}
-        </select>
-      </div>
-      <div class="col-md-4">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search parts..." value="{{ query }}">
-          <button class="btn btn-outline-secondary" type="submit">SEARCH</button>
+        </script>
+        <div class="col-md-2">
+          <select name="year" class="form-select">
+            <option value="">Any Year</option>
+            {% for y in years %}
+              <option value="{{ y }}" {% if y == year %}selected{% endif %}>{{ y }}</option>
+            {% endfor %}
+          </select>
         </div>
-      </div>
-    </div>
-  </form>
-  {% if query %}
-    <p>Showing results for: <strong>{{ query }}</strong></p>
-  {% endif %}
-  <div class="row">
-    {% for item in items %}
-      <div class="col-md-4 mb-4">
-        <div class="card">
-          {% if item.images.first %}
-            <img src="{{ item.images.first.image.url }}" class="card-img-top" alt="Item image" style="max-height:200px; object-fit:cover;">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ item.title }}</h5>
-            <p class="card-text">£{{ item.price }}</p>
-            <a href="{% url 'item_detail' item.id %}" class="btn btn-view-details">VIEW DETAILS</a>
+        <div class="col-md-4">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search parts..." value="{{ query }}">
+            <button class="btn btn-outline-secondary" type="submit">SEARCH</button>
           </div>
         </div>
       </div>
-    {% empty %}
-      <p>No items listed yet.</p>
-    {% endfor %}
-  </div>
+    </form>
+    {% if query %}
+      <p>Showing results for: <strong>{{ query }}</strong></p>
+    {% endif %}
+  </section>
+
+  <section aria-labelledby="listings-heading">
+    <h4 id="listings-heading" class="visually-hidden">Marketplace Listings</h4>
+    <div class="row">
+      {% for item in items %}
+        <div class="col-md-4 mb-4">
+          <article class="card">
+            {% if item.images.first %}
+              <img src="{{ item.images.first.image.url }}" class="card-img-top" alt="Item image" style="max-height:200px; object-fit:cover;">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">£{{ item.price }}</p>
+              <a href="{% url 'item_detail' item.id %}" class="btn btn-view-details">VIEW DETAILS</a>
+            </div>
+          </article>
+        </div>
+      {% empty %}
+        <p>No items listed yet.</p>
+      {% endfor %}
+    </div>
+  </section>
   <div style="height: 3em;"></div>
+</main>
 {% endblock %}

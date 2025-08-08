@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Item, Message
 from .forms import MessageForm
+from django.db.models import Q
 
 @login_required
 def inbox(request):
@@ -15,8 +16,12 @@ def sent_messages(request):
 
 @login_required
 def message_detail(request, message_id):
-    message = get_object_or_404(Message, pk=message_id, recipient=request.user)
-    if not message.is_read:
+    message = get_object_or_404(
+        Message.objects.filter(
+            Q(pk=message_id) & (Q(sender=request.user) | Q(recipient=request.user))
+        )
+    )
+    if message.recipient == request.user and not message.is_read:
         message.is_read = True
         message.save()
     return render(request, 'marketplace/message_detail.html', {'message': message})
