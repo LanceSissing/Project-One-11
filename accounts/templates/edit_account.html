@@ -1,6 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>EDIT ACCOUNT</h2>
-  <p>This is a placeholder page for editing your account details. Functionality coming soon!</p>
-  <a href="{% url 'account' %}" class="btn btn-warning mt-3">BACK TO ACCOUNT</a>
+  <section aria-labelledby="edit-account-heading" class="container mt-4">
+    <h2 id="edit-account-heading">EDIT ACCOUNT</h2>
+    <form method="post" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <nav class="mt-3">
+        <button type="submit" class="btn btn-warning">SAVE CHANGES</button>
+        <a href="{% url 'account' %}" class="btn btn-warning ms-2">CANCEL</a>
+      </nav>
+    </form>
+  </section>
 {% endblock %}

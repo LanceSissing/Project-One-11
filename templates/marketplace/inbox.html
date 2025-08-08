@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>INBOX</h2>
-  <a href="{% url 'sent_messages' %}" class="btn btn-warning mb-3">VIEW SENT MESSAGES</a>
-  <a href="/" class="btn btn-warning mb-3 ms-2">RETURN TO LISTINGS</a>{% if messages %}
-    <ul class="list-group">
-      {% for message in messages %}
-        <li class="list-group-item {% if not message.is_read %}list-group-item-info{% endif %}">
-          <a href="{% url 'message_detail' message.id %}"><strong>{{ message.subject }}</strong></a>
-          <br>
-          From: {{ message.sender.username }} | Regarding: {{ message.item.title }}
-          <br>
-          <small>{{ message.timestamp|date:"Y-m-d H:i" }}</small>
-        </li>
-      {% endfor %}
-    </ul>
-  {% else %}
-    <p>No messages yet.</p>
-  {% endif %}
+  <section aria-labelledby="inbox-heading" class="container">
+    <h2 id="inbox-heading">INBOX</h2>
+    <a href="{% url 'sent_messages' %}" class="btn btn-warning mb-3">VIEW SENT MESSAGES</a>
+    <a href="/" class="btn btn-warning mb-3 ms-2">RETURN TO LISTINGS</a>
+    {% if messages %}
+      <ul class="list-group" aria-label="Inbox messages">
+        {% for message in messages %}
+          <li class="list-group-item {% if not message.is_read %}list-group-item-info{% endif %}">
+            <a href="{% url 'message_detail' message.id %}"><strong>{{ message.subject }}</strong></a>
+            <br>
+            From: {{ message.sender.username }} | Regarding: {{ message.item.title }}
+            <br>
+            <small>{{ message.timestamp|date:"Y-m-d H:i" }}</small>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No messages yet.</p>
+    {% endif %}
+  </section>
 {% endblock %}

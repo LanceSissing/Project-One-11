@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Item, Message
-from .forms import MessageForm
+from .forms import MessageForm, EditAccountForm
 from django.db.models import Q
 
 @login_required
@@ -56,11 +56,6 @@ def delete_message(request, message_id):
     return redirect('message_detail', message_id=message_id)
 
 
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from .models import Item, Message
-from .forms import MessageForm
-
 @login_required
 def send_message(request, item_id):
     item = get_object_or_404(Item, pk=item_id)
@@ -77,10 +72,14 @@ def send_message(request, item_id):
     else:
         form = MessageForm()
     return render(request, 'marketplace/send_message.html', {'form': form, 'item': item, 'recipient': recipient})
-from django.shortcuts import render
 
+@login_required
 def edit_account_view(request):
-    # Placeholder view for now
-    return render(request, 'edit_account.html')
-
-# Create your views here.
+    if request.method == 'POST':
+        form = EditAccountForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('account')  # Redirect to the account page after saving
+    else:
+        form = EditAccountForm(instance=request.user)
+    return render(request, 'edit_account.html', {'form': form})
