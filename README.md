@@ -168,7 +168,7 @@ Transaction
 
 To access the Django admin panel for assessment:
 
-- **Admin URL:** https://project-one-11-4a3af24a0591.herokuapp.com/
+- **Admin URL:** https://project-one-11-4a3af24a0591.herokuapp.com/admin/
 - **Username:** Admin-one-11
 - **Password:** Comp-12_8hg*!
 
