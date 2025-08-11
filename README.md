@@ -168,11 +168,9 @@ Transaction
 
 To access the Django admin panel for assessment:
 
-- **Admin URL:** https://your-heroku-app.herokuapp.com/admin/
-- **Username:** [your_admin_username]
-- **Password:** [your_admin_password]
-
-> **Note:** Please keep these credentials secure and change/remove them after assessment is complete.
+- **Admin URL:** https://project-one-11-4a3af24a0591.herokuapp.com/
+- **Username:** Admin-one-11
+- **Password:** Comp-12_8hg*!
 
 ---
 
