@@ -47,7 +47,10 @@ This project intentionally does not send email notifications for routine account
 - **Won’t Have (for now):** Integrated payment processing (see Future Features).
 
 ### Wireframes
-*Add wireframe images or links here to illustrate key pages and user flows.*
+
+![full_screen_wireframe](images/IMG_0532.JPEG)
+![mobile_screen_wireframe](images/IMG_0533.JPEG)
+
 
 ## User Stories
 
@@ -65,20 +68,55 @@ This project intentionally does not send email notifications for routine account
 
 ## Entity Relationship Diagram (ERD)
 ```
-User (Buyer/Seller/Business)
-  |--< Item (Product)
-  |--< Transaction
-  |--< Message
+User
+- id (PK)
+- username
+- email
+- password
+- is_buyer
+- is_seller
+- is_business
+- date_joined
 
 Item
-  |--< Transaction
+- id (PK)
+- title
+- description
+- price
+- owner_id (FK to User)
+- created_at
+- updated_at
+
+Image
+- id (PK)
+- item_id (FK to Item)
+- image_url
+- uploaded_at
+
+Message
+- id (PK)
+- sender_id (FK to User)
+- recipient_id (FK to User)
+- item_id (FK to Item)
+- subject
+- body
+- timestamp
+- is_read
 
 Transaction
-  |-- Buyer (User)
-  |-- Seller (User)
-  |-- Item
+- id (PK)
+- buyer_id (FK to User)
+- seller_id (FK to User)
+- item_id (FK to Item)
+- price
+- status
+- created_at
 ```
-*Note: This is a simplified ERD. More fields and relationships will be added as the project develops.*
+- PK = Primary Key
+- FK = Foreign Key
+
+*This ERD shows all major entities, their key fields, and relationships. Additional fields and tables can be added as the project evolves.*
+
 
 ## Security
 
@@ -177,8 +215,6 @@ To access the Django admin panel for assessment:
 - **Password:** Comp-12_8hg*!
 
 ---
-
-For more details, see the project planning document or contact the maintainer.
 
 ### Design Decision: User Notifications
 
