@@ -34,6 +34,10 @@ Project-One-11 is a scalable full-stack web application for buying and selling m
 ## User Experience Design
 The application is designed for clarity and ease of use, with a responsive layout and intuitive navigation. Key user flows (registration, listing items, messaging) are streamlined. Accessibility is considered, with semantic HTML and ARIA labels. User feedback and error messages are clear and actionable.
 
+### Design Decision: User Notifications
+
+This project intentionally does not send email notifications for routine account actions (such as editing or deleting items) that are initiated by the user. This is to avoid unnecessary and potentially annoying emails, as users are already aware of the changes they have made. Notifications are reserved for critical security actions (e.g., password reset) or if the user specifically requests them in the future
+
 ## Project Planning
 
 ### MOSCOW Prioritisation
@@ -87,7 +91,7 @@ Transaction
 
 - **Payment Integration:** Add secure payment methods (e.g., Stripe, PayPal) for in-app transactions.
 - **User Ratings & Reviews:** Allow buyers and sellers to rate each other.
-- **Notifications:** Email or in-app notifications for new messages and offers.
+- **Notifications:** Email or in-app notifications for new messages and offers and security updates such as passowrd changes.
 - **Mobile App:** Native or PWA version for mobile users.
 
 ## Technologies and Languages Used
@@ -175,3 +179,9 @@ To access the Django admin panel for assessment:
 ---
 
 For more details, see the project planning document or contact the maintainer.
+
+### Design Decision: User Notifications
+
+This project intentionally does not send email notifications for routine account actions (such as editing or deleting items) that are initiated by the user. This is to avoid unnecessary and potentially annoying emails, as users are already aware of the changes they have made. Notifications are reserved for critical security actions (e.g., password reset) or if the user specifically requests them in the future.
+
+
