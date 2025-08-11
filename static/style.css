@@ -43,7 +43,7 @@ main {
   background: #fff;
   padding: 0;
   border-radius: 0;
-  box-shadow: 0;
+  box-shadow: none;
 }
 
 footer {
@@ -105,9 +105,9 @@ footer {
   color: #fff !important;
 }
 
-/* Add a border to the main account panel */
+
 .account-panel {
-  /* border: 1px solid #fe7125 !important; */
+  
   border-radius: 8px;
   padding: 1.5em;
   background: #fff;
