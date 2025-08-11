@@ -21,6 +21,7 @@ Project-One-11 is a scalable full-stack web application for buying and selling m
 - [Credits](#credits)
 - [Agile](#agile)
 - [AI Implementation](#ai-implementation)
+- [Assessment/Admin Access](#assessmentadmin-access)
 
 ## Key Features
 - User registration and account management
@@ -162,6 +163,16 @@ Transaction
 
 - GitHub Copilot and other AI tools were used for code suggestions, semantic HTML improvements, and troubleshooting.
 - AI-assisted accessibility and performance checks (Lighthouse, WAVE).
+
+## Admin Access
+
+To access the Django admin panel for assessment:
+
+- **Admin URL:** https://your-heroku-app.herokuapp.com/admin/
+- **Username:** [your_admin_username]
+- **Password:** [your_admin_password]
+
+> **Note:** Please keep these credentials secure and change/remove them after assessment is complete.
 
 ---
 
