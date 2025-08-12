@@ -154,7 +154,11 @@ Transaction
 - Automated tests for models and forms (add screenshots here).
 - Lighthouse and WAVE used for accessibility and performance checks.
 - Example screenshot:
-  ![Lighthouse Accessibility Score](screenshots/lighthouse-accessibility.png)
+  ![LightHouse Score](images/IMG_0537.PNG)
+
+### Accessibility Testing
+
+WAVE accessibility audit was run on the deployed site. While key issues such as alt text and semantic headings were addressed, some accessibility warnings remain due to time constraints. The project prioritised core accessibility features and user flows - full WCAG compliance is a future goal and may be considered for future improvements.  
 
 ## Deployment
 
