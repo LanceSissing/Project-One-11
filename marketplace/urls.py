@@ -9,4 +9,5 @@ urlpatterns = [
     path('messages/<int:message_id>/reply/', views.message_reply, name='message_reply'),
     path('sent/', views.sent_messages, name='sent_messages'),
     path('message/<int:message_id>/delete/', views.delete_message, name='delete_message'),
+    path('item/<int:item_id>/delete/', views.delete_item, name='delete_item'),
     ]

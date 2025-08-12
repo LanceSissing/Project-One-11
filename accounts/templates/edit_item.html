@@ -43,7 +43,12 @@
     {% else %}
       <p>No images uploaded for this item.</p>
     {% endif %}
-    <a href="{% url 'account' %}" class="btn btn-warning mt-3">BACK TO ACCOUNT</a>
+    <div class="mt-3 d-flex gap-2">
+      <a href="{% url 'account' %}" class="btn btn-warning">BACK TO ACCOUNT</a>
+      {% if user.is_authenticated and item.owner == user %}
+        <a href="{% url 'delete_item' item.id %}" class="btn btn-danger">DELETE LISTING</a>
+      {% endif %}
+    </div>
   </section>
   <div style="height: 6rem;"></div>  
 </main>

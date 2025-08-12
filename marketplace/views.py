@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Item, Message
 from .forms import MessageForm, EditAccountForm
 from django.db.models import Q
@@ -83,3 +83,11 @@ def edit_account_view(request):
     else:
         form = EditAccountForm(instance=request.user)
     return render(request, 'edit_account.html', {'form': form})
+
+@login_required
+def delete_item(request, item_id):
+    item = get_object_or_404(Item, id=item_id, owner=request.user)
+    if request.method == "POST":
+        item.delete()
+        return redirect('account')  # or wherever you want to redirect after deletion
+    return render(request, 'marketplace/delete_item_confirm.html', {'item': item})
