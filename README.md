@@ -54,17 +54,62 @@ This project intentionally does not send email notifications for routine account
 
 ## User Stories
 
-**Individual Buyer:**
-- Find items that fit their motorcycle easily
-- Buy at market-leading prices with confidence
+### Individual Buyer
 
-**Individual Seller:**
-- Sell parts with minimal fuss and low fees
-- Avoid excessive charges or commissions
+- **As a buyer, I want to search for motorcycle parts by make, model, and year, so that I can easily find items that fit my motorcycle.**  
+  *(Must Have)*
 
-**Business User:**
-- Add products and manage inventory
-- Reach a targeted audience with minimal setup cost
+- **As a buyer, I want to view detailed information and images for each part, so that I can buy with confidence.**  
+  *(Must Have)*
+
+- **As a buyer, I want to message sellers directly through the platform, so that I can ask questions before purchasing.**  
+  *(Should Have)*
+
+---
+
+### Individual Seller
+
+- **As a seller, I want to list motorcycle parts for sale with images and descriptions, so that I can sell parts with minimal fuss.**  
+  *(Must Have)*
+
+- **As a seller, I want to manage my listings (edit or delete), so that I can keep my inventory up to date.**  
+  *(Must Have)*
+
+- **As a seller, I want to avoid excessive charges or commissions, so that I can maximize my earnings.**  
+  *(Design Principle)*
+
+- **As a seller, I want to receive notifications when I get a message or offer, so that I can respond quickly.**  
+  *(Could Have)*
+
+---
+
+### Business User
+
+- **As a business user, I want to add multiple products and manage my inventory efficiently, so that I can reach more buyers.**  
+  *(Should Have)*
+
+- **As a business user, I want to access analytics or sales reports, so that I can track my performance.**  
+  *(Could Have)*
+
+- **As a business user, I want to create a business profile, so that buyers can trust my listings.**  
+  *(Should Have)*
+
+---
+
+### General Platform
+
+- **As a user, I want a secure and easy registration/login process, so that my account is protected.**  
+  *(Must Have)*
+
+- **As a user, I want the site to be responsive and accessible, so that I can use it on any device.**  
+  *(Must Have)*
+
+- **As a user, I want to filter and sort listings, so that I can quickly find what I need.**  
+  *(Should Have)*
+
+- **As a user, I want to save favorite searches or items, so that I can revisit them later.**  
+  *(Could Have)*
+
 
 ## Entity Relationship Diagram (ERD)
 ```
@@ -220,8 +265,6 @@ To access the Django admin panel for assessment:
 
 ---
 
-### Design Decision: User Notifications
 
-This project intentionally does not send email notifications for routine account actions (such as editing or deleting items) that are initiated by the user. This is to avoid unnecessary and potentially annoying emails, as users are already aware of the changes they have made. Notifications are reserved for critical security actions (e.g., password reset) or if the user specifically requests them in the future.
 
 
