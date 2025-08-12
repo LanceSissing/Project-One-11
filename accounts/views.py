@@ -50,7 +50,11 @@ def home(request):
             Q(category__icontains=query) |
             Q(price__icontains=query)
         )
-    items = items.order_by('-created_at')
+        items = items.order_by('-created_at')  # Show all matching search results
+    elif make or model or year:
+        items = items.order_by('-created_at')  # Show all filtered results
+    else:
+        items = items.order_by('-created_at')[:3]  # Limit to 3 only on plain homepage
     # Get distinct values for dropdowns
     makes = Item.objects.values_list('make', flat=True).distinct().exclude(make__isnull=True).exclude(make__exact='')
     models = Item.objects.values_list('model_name', flat=True).distinct().exclude(model_name__isnull=True).exclude(model_name__exact='')
