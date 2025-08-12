@@ -255,13 +255,7 @@ WAVE accessibility audit was run on the deployed site. While key issues such as 
 - GitHub Copilot and other AI tools were used for code suggestions, semantic HTML improvements, and troubleshooting.
 - AI-assisted accessibility and performance checks (Lighthouse, WAVE).
 
-## Admin Access
 
-To access the Django admin panel for assessment:
-
-- **Admin URL:** https://project-one-11-4a3af24a0591.herokuapp.com/admin/
-- **Username:** Admin-one-11
-- **Password:** Comp-12_8hg*!
 
 ---
 
